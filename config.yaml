@@ -1,0 +1,101 @@
+# Predictive Maintenance System Configuration
+
+project:
+  name: "Predictive Maintenance System"
+  version: "1.0.0"
+  description: "AI/ML-based predictive maintenance for manufacturing equipment"
+  author: "skssathya"
+
+# Data Configuration
+data:
+  raw_path: "data/raw/"
+  processed_path: "data/processed/"
+  test_size: 0.2
+  validation_size: 0.1
+  random_state: 42
+  
+# Feature Engineering
+features:
+  scaling_method: "standard"  # standard, minmax, robust
+  handle_missing: "mean"  # mean, median, forward_fill
+  remove_outliers: true
+  outlier_method: "iqr"  # iqr, zscore
+  
+# Model Configuration
+models:
+  random_forest:
+    n_estimators: 100
+    max_depth: 15
+    min_samples_split: 5
+    min_samples_leaf: 2
+    random_state: 42
+    n_jobs: -1
+    
+  xgboost:
+    n_estimators: 100
+    max_depth: 7
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    objective: "binary:logistic"
+    eval_metric: "auc"
+    
+  svm:
+    kernel: "rbf"
+    C: 1.0
+    gamma: "scale"
+    probability: true
+    
+  neural_network:
+    hidden_layers: [128, 64, 32]
+    activation: "relu"
+    output_activation: "sigmoid"
+    epochs: 50
+    batch_size: 32
+    validation_split: 0.2
+    dropout_rate: 0.3
+    
+  isolation_forest:
+    n_estimators: 100
+    contamination: 0.05
+    random_state: 42
+
+# Training Configuration
+training:
+  cv_folds: 5
+  optimization_metric: "f1"  # accuracy, precision, recall, f1, auc
+  early_stopping: true
+  early_stopping_rounds: 10
+  save_best_model: true
+  
+# Evaluation Configuration
+evaluation:
+  threshold: 0.5  # Classification threshold for binary output
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1"
+    - "auc"
+    - "confusion_matrix"
+  generate_plots: true
+  
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 5000
+  debug: false
+  cors_origins: ["*"]
+  
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_file: "logs/app.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+  
+# Hardware Configuration
+hardware:
+  use_gpu: true
+  gpu_memory_fraction: 0.8
+  num_workers: 4

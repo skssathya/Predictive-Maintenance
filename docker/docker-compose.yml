@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: pm-api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    environment:
+      - FLASK_ENV=production
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+
+  # Optional: Add database service
+  # db:
+  #   image: postgres:13
+  #   container_name: pm-db
+  #   environment:
+  #     POSTGRES_DB: predictive_maintenance
+  #     POSTGRES_USER: admin
+  #     POSTGRES_PASSWORD: admin
+  #   volumes:
+  #     - db-data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+
+volumes:
+  db-data:

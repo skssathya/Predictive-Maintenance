@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Maintenance Dashboard</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Predictive Maintenance Dashboard</h1>
+            <p>Monitor machine health and predict failure risk before downtime occurs.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <h2>Machine Risk Prediction</h2>
+            <form id="predict-form">
+                <div class="form-grid">
+                    <label>
+                        Vibration (mm/s)
+                        <input type="number" step="0.01" name="vibration" required>
+                    </label>
+                    <label>
+                        Temperature (°C)
+                        <input type="number" step="0.1" name="temperature" required>
+                    </label>
+                    <label>
+                        Run Time (hours)
+                        <input type="number" step="1" name="run_time" required>
+                    </label>
+                    <label>
+                        Motor Current (A)
+                        <input type="number" step="0.1" name="motor_current" required>
+                    </label>
+                </div>
+                <button type="submit" class="primary-button">Predict Failure Risk</button>
+            </form>
+
+            <div id="result-card" class="result-card hidden">
+                <h3>Prediction Result</h3>
+                <p><strong>Risk Level:</strong> <span id="risk-level"></span></p>
+                <p><strong>Failure Probability:</strong> <span id="failure-probability"></span></p>
+                <p><strong>Recommendation:</strong> <span id="recommendation"></span></p>
+            </div>
+
+            <div id="alert" class="alert hidden"></div>
+        </section>
+
+        <section class="panel">
+            <h2>System Status</h2>
+            <div class="status-grid">
+                <div class="status-card">
+                    <h3>API Health</h3>
+                    <p id="health-status">Checking...</p>
+                </div>
+                <div class="status-card">
+                    <h3>Available Models</h3>
+                    <ul id="model-list">
+                        <li>Loading models...</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Predictive Maintenance demo dashboard · Flask frontend</p>
+    </footer>
+
+    <script src="./app.js"></script>
+</body>
+</html>
